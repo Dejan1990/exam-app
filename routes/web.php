@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,6 @@ Route::post('quiz', [QuizController::class, 'store'])->name('quiz.store');
 Route::get('quiz/{quiz:slug}', [QuizController::class, 'edit'])->name('quiz.edit');
 Route::put('quiz/{quiz}', [QuizController::class, 'update'])->name('quiz.update');
 Route::delete('quiz/{quiz}', [QuizController::class, 'destroy'])->name('quiz.destroy');
+
+Route::resource('question', QuestionController::class);
 
