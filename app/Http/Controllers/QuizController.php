@@ -27,7 +27,8 @@ class QuizController extends Controller
      */
     public function create()
     {
-        return view('backend.quiz.create');
+        $quiz = new Quiz();
+        return view('backend.quiz.create', [ 'quiz' => $quiz ]);
     }
 
     /**
@@ -44,7 +45,7 @@ class QuizController extends Controller
             'minutes' => 'required|integer'
         ]));
 
-        return back()->with('message', 'Quiz created Successfully');
+        return redirect()->route('quiz.index')->with('message', 'Quiz created Successfully');
     }
 
     /**

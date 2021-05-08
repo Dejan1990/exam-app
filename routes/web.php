@@ -23,4 +23,9 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::resource('quiz', QuizController::class);
+Route::get('quiz', [QuizController::class, 'index'])->name('quiz.index');
+Route::get('quiz/create', [QuizController::class, 'create'])->name('quiz.create');
+Route::post('quiz', [QuizController::class, 'store'])->name('quiz.store');
+Route::get('quiz/{quiz:slug}', [QuizController::class, 'edit'])->name('quiz.edit');
+Route::put('quiz/{quiz}', [QuizController::class, 'update'])->name('quiz.update');
+
