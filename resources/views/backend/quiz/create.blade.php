@@ -9,7 +9,7 @@
 
         @include('messages._message')
 
-    <form action="#" method="POST">
+    <form action="{{ route('quiz.store') }}" method="POST">
         @csrf
 
 	<div class="module">
@@ -25,7 +25,7 @@
 				</div>
 			     @error('name')
 			    <span class="invalid-feedback" role="alert">
-			        <strong class="text-red">{{ $message }}</strong>
+			        <strong style="color:red;">{{ $message }}</strong>
 			    </span>
 			@enderror      
 
@@ -38,7 +38,7 @@
 				</div>
 			        @error('description')
 			        <span class="invalid-feedback" role="alert">
-			            <strong class="text-red">{{ $message }}</strong>
+			            <strong style="color:red;">{{ $message }}</strong>
 			        </span>
 			    @enderror
 
@@ -51,7 +51,7 @@
 				</div>
 			   @error('minutes')
 			        <span class="invalid-feedback" role="alert">
-			            <strong class="text-red">{{ $message }}</strong>
+			            <strong style="color:red;">{{ $message }}</strong>
 			        </span>
 			    @enderror
 			</div>

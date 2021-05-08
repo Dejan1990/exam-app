@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Quiz extends Model
 {
@@ -20,5 +21,11 @@ class Quiz extends Model
     {
         //return $this->belongsToMany(User::class,'quiz_user');
         return $this->belongsToMany(User::class,'quiz_user');
+    }
+
+    public function setNameAttribute($value) 
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
     }
 }

@@ -35,7 +35,13 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Quiz::create($request->validate([
+            'name' => 'required|string',
+            'description' => 'required|min:3|max:500',
+            'minutes' => 'required|integer'
+        ]));
+
+        return back()->with('message', 'Quiz created Successfully');
     }
 
     /**
