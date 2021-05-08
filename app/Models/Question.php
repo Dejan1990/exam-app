@@ -10,8 +10,8 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = ['question','quiz_id'];
-    //private $limit = 10;
-    //private $order = 'DESC';
+    private $limit = 10;
+    private $order = 'DESC';
 
     public function answers()
     {
@@ -21,5 +21,10 @@ class Question extends Model
     public function quiz()
     {
     	return $this->belongsTo(Quiz::class);
+    }
+
+    public function getQuestions()
+    {
+        return Question::orderBy('created_at', $this->order)->with('quiz')->paginate($this->limit);
     }
 }
