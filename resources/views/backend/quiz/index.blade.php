@@ -47,10 +47,11 @@
 							</td>
 
 							<td>
-
-                            <a href="#">
-                                <button class="btn btn-danger">Delete</button>
-                            </a>
+								<form class="form-delete" method="POST" action="{{ route('quiz.destroy', $quiz) }}">
+									@method('DELETE')
+									@csrf
+									<button class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+								</form>
 							</td>
 
 						</tr>

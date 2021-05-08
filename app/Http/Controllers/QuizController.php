@@ -96,6 +96,7 @@ class QuizController extends Controller
      */
     public function destroy(Quiz $quiz)
     {
-        //
+        $quiz->delete();
+        return back()->with('message', 'Quiz deleted Successfully!');
     }
 }
