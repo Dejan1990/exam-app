@@ -19,7 +19,7 @@
                  <div class="control-group">
 				<label class="control-lable" for="name">Choose Quiz</label>
 				<div class="controls"> 
-					<select name="quiz" class="span8">
+					<select name="quiz_id" class="span8">
 						@foreach($quizzes as $quiz)
 						    <option value="{{$quiz->id}}">{{$quiz->name}}</option>
 						@endforeach
@@ -28,7 +28,7 @@
 				</div>
 			     @error('question')
 			    <span class="invalid-feedback" role="alert">
-			        <strong>{{ $message }}</strong>
+			        <strong style="color:red;">{{ $message }}</strong>
 			    </span>
 			@enderror      
 
@@ -41,7 +41,7 @@
 				</div>
 			     @error('question')
 			    <span class="invalid-feedback" role="alert">
-			        <strong>{{ $message }}</strong>
+			        <strong style="color:red;">{{ $message }}</strong>
 			    </span>
 			@enderror      
 
@@ -51,14 +51,14 @@
 				<label class="control-lable" for="options">Options</label>
 				<div class="controls"> 
 					@for($i=0;$i<4;$i++)
-					<input type="text" name="options[]" class="span7 @error('name') border-red @enderror" placeholder="options{{$i+1}}" required="">
+					<input type="text" name="options[]" class="span7 @error('name') border-red @enderror" placeholder="options{{$i+1}}">
 
 					<input type="radio" name="correct_answer" value="{{$i}}"><span>Is correct answer</span>
 					@endfor
 				</div>
-			     @error('question')
+			     @error('correct_answer')
 			    <span class="invalid-feedback" role="alert">
-			        <strong>{{ $message }}</strong>
+			        <strong style="color:red;">{{ $message }}</strong>
 			    </span>
 			@enderror      
 

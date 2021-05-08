@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -37,7 +38,20 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'quiz_id'=>'required',
+            'question'=>'required',
+            'options'=>'required|array|min:3',
+            'options.*'=>'required|string|distinct',
+            'correct_answer'=>'required'
+        ]);
+
+        $answer = new Answer();
+        
+        $data = $request->all();
+        $question = Question::create($data);
+        $answer->storeAnswer($data, $question);
+        return back()->with('message', 'Question created successfully!');
     }
 
     /**
