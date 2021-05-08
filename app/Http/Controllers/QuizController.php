@@ -15,7 +15,9 @@ class QuizController extends Controller
     public function index()
     {
         $quizzes = Quiz::all();
-        return view('backend.quiz.index',compact('quizzes'));
+        return view('backend.quiz.index', [
+            'quizzes' => $quizzes
+        ]);
     }
 
     /**
@@ -64,7 +66,7 @@ class QuizController extends Controller
      */
     public function edit(Quiz $quiz)
     {
-        //
+        return view('backend.quiz.edit', [ 'quiz' => $quiz ]);
     }
 
     /**
@@ -76,7 +78,13 @@ class QuizController extends Controller
      */
     public function update(Request $request, Quiz $quiz)
     {
-        //
+        $quiz->update($request->validate([
+            'name' => 'required|string',
+            'description' => 'required|min:3|max:500',
+            'minutes' => 'required|integer'
+        ]));
+
+        return redirect()->route('quiz.index')->with('message','Quiz updated Successfully!');
     }
 
     /**

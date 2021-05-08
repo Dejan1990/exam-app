@@ -40,7 +40,7 @@
 							</td>
 
 							<td>
-								<a href="#">
+								<a href="{{ route('quiz.edit', $quiz) }}">
 									<button class="btn btn-primary">Edit</button>
 
 								</a>
