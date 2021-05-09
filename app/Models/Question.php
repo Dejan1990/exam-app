@@ -4,14 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Question extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['question','quiz_id'];
+    protected $fillable = ['question', 'slug', 'quiz_id'];
     private $limit = 10;
     private $order = 'DESC';
+
+    public function setQuestionAttribute($value)
+    {
+        $this->attributes['question'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
+    }
 
     public function answers()
     {

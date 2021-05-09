@@ -31,5 +31,6 @@ Route::get('quiz/{quiz:slug}', [QuizController::class, 'edit'])->name('quiz.edit
 Route::put('quiz/{quiz}', [QuizController::class, 'update'])->name('quiz.update');
 Route::delete('quiz/{quiz}', [QuizController::class, 'destroy'])->name('quiz.destroy');
 
-Route::resource('question', QuestionController::class);
+Route::resource('question', QuestionController::class)->except(['show']);
+Route::get('question/{question:slug}', [QuestionController::class, 'show'])->name('question.show');
 
