@@ -27,10 +27,13 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('quiz', [QuizController::class, 'index'])->name('quiz.index');
 Route::get('quiz/create', [QuizController::class, 'create'])->name('quiz.create');
 Route::post('quiz', [QuizController::class, 'store'])->name('quiz.store');
-Route::get('quiz/{quiz:slug}', [QuizController::class, 'edit'])->name('quiz.edit');
+Route::get('quiz/{quiz:slug}/edit', [QuizController::class, 'edit'])->name('quiz.edit');
 Route::put('quiz/{quiz}', [QuizController::class, 'update'])->name('quiz.update');
 Route::delete('quiz/{quiz}', [QuizController::class, 'destroy'])->name('quiz.destroy');
 
-Route::resource('question', QuestionController::class)->except(['show']);
+Route::get('question', [QuestionController::class, 'index'])->name('question.index');
 Route::get('question/{question:slug}', [QuestionController::class, 'show'])->name('question.show');
+Route::get('question/create', [QuestionController::class, 'create'])->name('question.create');
+Route::post('question', [QuestionController::class, 'store'])->name('question.store');
+Route::get('question/{question:slug}/edit', [QuestionController::class, 'edit'])->name('question.edit');
 

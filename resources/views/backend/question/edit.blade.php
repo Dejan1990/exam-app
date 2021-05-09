@@ -1,34 +1,40 @@
 @extends('backend.layouts.master')
 
-	@section('title','create quiz')
+	@section('title','Update question')
 
 	@section('content')
 
 	<div class="span9">
      <div class="content">
-        @include('messages._message')
 
-     <form action="{{ route('question.store') }}" method="POST">
+     	@include('messages._message')
+
+     <form action="#" method="POST">
         @csrf
+     	@method('PUT')
 
 	<div class="module">
             <div class="module-head">
-                <h3>Create Question</h3>
+                <h3>Update Question</h3>
             </div>
             <div class="module-body">
                  <div class="control-group">
 				<label class="control-lable" for="name">Choose Quiz</label>
 				<div class="controls"> 
-					<select name="quiz_id" class="span8">
+					<select name="quiz" class="span8 ">
 						@foreach($quizzes as $quiz)
-						    <option value="{{$quiz->id}}">{{$quiz->name}}</option>
+						<option value="{{$quiz->id}}"
+							@if($quiz->id==$question->quiz->id)selected
+							@endif
+
+							>{{$quiz->name}}</option>
 						@endforeach
 
 					</select>
 				</div>
 			     @error('question')
 			    <span class="invalid-feedback" role="alert">
-			        <strong style="color:red;">{{ $message }}</strong>
+			        <strong>{{ $message }}</strong>
 			    </span>
 			@enderror      
 
@@ -37,11 +43,11 @@
             <div class="control-group">
 				<label class="control-lable" for="name">Question name</label>
 				<div class="controls"> 
-					<input type="text" name="question" class="span8 @error('name') border-red @enderror" placeholder="Title of a quiz" value="{{old('question')}}">
+					<input type="text" name="question" class="span8 @error('name') border-red @enderror" placeholder="name of a quiz" value="{{$question->question}}">
 				</div>
 			     @error('question')
 			    <span class="invalid-feedback" role="alert">
-			        <strong style="color:red;">{{ $message }}</strong>
+			        <strong>{{ $message }}</strong>
 			    </span>
 			@enderror      
 
@@ -50,20 +56,22 @@
 			 <div class="control-group">
 				<label class="control-lable" for="options">Options</label>
 				<div class="controls"> 
-					@for($i=0;$i<4;$i++)
-					<input type="text" name="options[]" class="span7 @error('name') border-red @enderror" placeholder="options{{$i+1}}">
+					@foreach($question->answers as $key=>$answer)
+					<input type="text" name="options[]" class="span7"
+					value="{{$answer->answer}}" 
+					required="">
 
-					<input type="radio" name="correct_answer" value="{{$i}}"><span>Is correct answer</span>
-					@endfor
+					<input type="radio" name="correct_answer" value="{{$key}}"@if($answer->is_correct){{'checked'}}@endif
+
+					><span>Is correct answer</span>
+					@endforeach
 				</div>
-			     @error('correct_answer')
+			     @error('question')
 			    <span class="invalid-feedback" role="alert">
-			        <strong style="color:red;">{{ $message }}</strong>
+			        <strong>{{ $message }}</strong>
 			    </span>
 			@enderror      
-
-			</div>
-
+			</div>		
 			<div class="control-group">
 				<div class="controls">
 					<button type="submit" class="btn btn-success">Submit</button>
@@ -74,4 +82,4 @@
 </form>
 </div>
 </div>
-@endsection
+@endsection 

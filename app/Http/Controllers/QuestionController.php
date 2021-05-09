@@ -74,7 +74,11 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        $quizzes = Quiz::all();
+        return view('backend.question.edit', [ 
+            'question' => $question,
+            'quizzes' =>  $quizzes
+        ]);
     }
 
     /**

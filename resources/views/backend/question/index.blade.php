@@ -38,7 +38,7 @@
 							</td>
 
 							<td>
-								<a href="#">
+								<a href="{{ route('question.edit', $question) }}">
 									<button class="btn btn-primary">Edit</button>
 
 								</a>

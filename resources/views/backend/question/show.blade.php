@@ -28,7 +28,9 @@
                             </table>
                         </div>
                         <div class="module-foot">
-                            <a href="#"> <button class="btn btn-primary">Edit</button></a>
+                            <a href="{{ route('question.edit', $question) }}"> 
+                                <button class="btn btn-primary">Edit</button>
+                            </a>
 
                             <a href="#"> <button class="btn btn-danger">Delete</button></a>
 
