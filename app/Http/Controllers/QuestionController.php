@@ -90,7 +90,19 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $this->validate($request,[
+            'quiz_id'=>'required',
+            'question'=>'required',
+            'options'=>'required|array|min:3',
+            'options.*'=>'required|string|distinct',
+            'correct_answer'=>'required'
+        ]);
+
+        $answer = new Answer();
+        $data = $request->all();
+        $question->update($data);
+        $answer->updateAnswer($data, $question);
+        return redirect()->route('question.show', $question)->with('message', 'Question updated successfully');
     }
 
     /**

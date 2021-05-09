@@ -9,7 +9,7 @@
 
      	@include('messages._message')
 
-     <form action="#" method="POST">
+     <form action="{{ route('question.update', $question) }}" method="POST">
         @csrf
      	@method('PUT')
 
@@ -21,7 +21,7 @@
                  <div class="control-group">
 				<label class="control-lable" for="name">Choose Quiz</label>
 				<div class="controls"> 
-					<select name="quiz" class="span8 ">
+					<select name="quiz_id" class="span8 ">
 						@foreach($quizzes as $quiz)
 						<option value="{{$quiz->id}}"
 							@if($quiz->id==$question->quiz->id)selected
@@ -34,7 +34,7 @@
 				</div>
 			     @error('question')
 			    <span class="invalid-feedback" role="alert">
-			        <strong>{{ $message }}</strong>
+			        <strong style="color:red;">{{ $message }}</strong>
 			    </span>
 			@enderror      
 
@@ -47,7 +47,7 @@
 				</div>
 			     @error('question')
 			    <span class="invalid-feedback" role="alert">
-			        <strong>{{ $message }}</strong>
+			        <strong style="color:red;">{{ $message }}</strong>
 			    </span>
 			@enderror      
 
@@ -68,7 +68,7 @@
 				</div>
 			     @error('question')
 			    <span class="invalid-feedback" role="alert">
-			        <strong>{{ $message }}</strong>
+			        <strong style="color:red;">{{ $message }}</strong>
 			    </span>
 			@enderror      
 			</div>		
