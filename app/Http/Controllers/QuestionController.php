@@ -52,7 +52,7 @@ class QuestionController extends Controller
         $data = $request->all();
         $question = Question::create($data);
         $answer->storeAnswer($data, $question);
-        return back()->with('message', 'Question created successfully!');
+        return redirect()->route('question.show', $question)->with('message', 'Question created successfully!');
     }
 
     /**
@@ -113,6 +113,8 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        (new Answer)->deleteAnswer($question);
+        $question->delete();
+        return redirect()->route('question.index')->with('message','Question deleted successfully!');
     }
 }

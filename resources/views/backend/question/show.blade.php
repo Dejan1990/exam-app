@@ -32,7 +32,22 @@
                                 <button class="btn btn-primary">Edit</button>
                             </a>
 
-                            <a href="#"> <button class="btn btn-danger">Delete</button></a>
+                            <form id="delete-form{{$question->id}}" method="post" action="{{ route('question.destroy', $question) }}" style="display: none">
+                                @csrf
+                                @method('DELETE')
+                              </form>
+                              <a href="" onclick="if(confirm('Do you want to delete?')){
+                                event.preventDefault();
+                                document.getElementById('delete-form{{$question->id}}').submit();
+                              }else{
+                                event.preventDefault();
+                              }
+
+
+                              ">
+
+                             <input type="submit" value="Delete" class="btn btn-danger">   
+                             </a>
 
                         <a href="{{route('question.index')}}"><button class="btn btn-inverse pull-right">Back</button></a>
 
