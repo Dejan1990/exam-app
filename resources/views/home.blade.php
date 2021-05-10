@@ -5,9 +5,7 @@
     <div class="row ">
 
         <div class="col-md-8">
-        @if(Session::has('error'))
-            <div class="alert alert-danger">{{Session::get('error')}}</div>
-        @endif
+            @include('messages._message')
             <div class="card">
                 <div class="card-header">Exam</div>
 
