@@ -41,4 +41,6 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::post('/exam/assign', [ExamController::class, 'assignExam'])->name('exam.assign');
     Route::get('exam/user', [ExamController::class, 'userExam'])->name('view.exam');
     Route::post('exam/remove', [ExamController::class, 'removeExam'])->name('exam.remove');
+    Route::get('result', [ExamController::class, 'result'])->name('result');
+    Route::get('result/{userId}/{quizId}', [ExamController::class, 'userQuizResult']);
 });

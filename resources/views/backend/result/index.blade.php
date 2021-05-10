@@ -1,0 +1,61 @@
+@extends('backend.layouts.master')
+
+@section('title','exam assigned user')
+
+@section('content')
+
+	<div class="span9">
+        <div class="content">
+            @include('messages._message')
+            <div class="module">
+                <div class="module-head">
+                    <h3>User Result</h3>
+                </div>
+
+                <div class="module-body">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Name</th>
+                          <th>Quiz</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          @if($quizzes->count() > 0)
+                          @foreach($quizzes as $quiz)
+                          @foreach($quiz->users as $key=>$user)
+                        <tr>
+                          <td>{{$key+1}}</td>
+                          <td>{{$user->name}}</td>
+                          <td>{{$quiz->name}}</td>
+
+                          <td>
+                              <a href="{{ route('quiz.question', $quiz) }}">
+                                  <button class="btn btn-inverse">View Questions</button>
+                              </a>
+                          </td>
+
+                          <td>
+                              <a href="result/{{$user->id}}/{{$quiz->id}}">
+                                  <button class="btn btn-primary">View Result</button>
+                              </a>
+                          </td>	
+                        </tr>									 							 							
+                        @endforeach
+                        @endforeach
+
+                        @else
+                        <td>No user to display</td>
+                        @endif		
+                      </tbody>
+                    </table>
+                   </div>
+               </div>
+
+            </div>
+
+           </div>
+    </div> 
+@endsection

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Quiz;
 use App\Models\User;
 use App\Models\Result;
+use App\Models\Answer;
+use App\Models\Question;
 
 class ExamController extends Controller
 {
@@ -64,5 +66,34 @@ class ExamController extends Controller
             'answer_id' => $request['answerId'],
             'question_id' => $request['questionId']// obratiti paznju na ovo quizId, answerId, questionId -> tako je u QuizComponent.vue postuserChoice()
         ]);
+    }
+
+    public function result()
+    {
+        $quizzes = Quiz::with('users')->get();
+        return view('backend.result.index',compact('quizzes'));
+    }
+
+    public function userQuizResult($userId, $quizId)
+    {
+        $results = Result::where('user_id',$userId)->where('quiz_id',$quizId)->get();
+        $totalQuestions = Question::where('quiz_id',$quizId)->count();
+        $attemptQuestion = Result::where('quiz_id',$quizId)->where('user_id',$userId)->count();
+        $quiz = Quiz::where('id',$quizId)->get();
+
+        $ans=[];
+        foreach($results as $answer){
+            array_push($ans,$answer->answer_id);
+        }
+        $userCorrectedAnswer = Answer::whereIn('id',$ans)->where('is_correct',1)->count();
+        $userWrongAnswer = $totalQuestions-$userCorrectedAnswer;
+        if($attemptQuestion){
+            $percentage = ($userCorrectedAnswer/$totalQuestions)*100;
+        }else{
+            $percentage=0;
+        }
+
+
+        return view('backend.result.result',compact('results','totalQuestions','attemptQuestion','userCorrectedAnswer','userWrongAnswer','percentage','quiz'));
     }
 }
