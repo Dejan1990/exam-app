@@ -27,9 +27,9 @@
 						</thead>
 						<tbody>
 						@if($questions->count() > 0)
-						@foreach($questions as $question)
+						@foreach($questions as $key => $question)
 						<tr>
-							<td>{{ $loop->index + 1 }}</td>
+							<td>{{ $key + $questions->firstItem() }}</td>
 							<td>{{ $question->question }}</td>
 							<td>{{ $question->quiz->name }}</td>
 							<td>{{ date('F d,Y',strtotime($question->created_at)) }}</td>

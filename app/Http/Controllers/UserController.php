@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    private $limit = 10;
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::latest()->paginate($this->limit);
+        return view('backend.user.index',compact('users'));
     }
 
     /**
