@@ -1896,7 +1896,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['quizid', 'quizQuestions', 'hasQuizPlayed', 'times'],
+  data: function data() {
+    return {
+      questions: this.quizQuestions,
+      questionIndex: 0
+    };
+  },
+  methods: {
+    next: function next() {
+      this.questionIndex++;
+    },
+    prev: function prev() {
+      this.questionIndex--;
+    }
+  }
+});
 
 /***/ }),
 
@@ -37556,32 +37590,106 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Quiz Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("Online ExaminAtion\n                    "),
+            _c("span", { staticClass: "float-right" }, [
               _vm._v(
-                "\n                    I'm an quiz component.\n                "
+                _vm._s(_vm.questionIndex) + "/" + _vm._s(_vm.questions.length)
               )
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c(
+                "span",
+                { staticClass: "float-right", staticStyle: { color: "red" } },
+                [_vm._v("10:00")]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.questions, function(question, index) {
+                return _c("div", { key: index }, [
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: index === _vm.questionIndex,
+                          expression: "index === questionIndex"
+                        }
+                      ]
+                    },
+                    [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(question.question) +
+                          "\n                        "
+                      ),
+                      _c(
+                        "ol",
+                        _vm._l(question.answers, function(choice) {
+                          return _c("li", { key: choice.id }, [
+                            _c("label", [
+                              _c("input", { attrs: { type: "radio" } }),
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(choice.answer) +
+                                  "\n                            "
+                              )
+                            ])
+                          ])
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
+              }),
+              _vm._v(" "),
+              _c("div", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success float-right",
+                    on: {
+                      click: function($event) {
+                        return _vm.prev()
+                      }
+                    }
+                  },
+                  [_vm._v("Prev")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: {
+                      click: function($event) {
+                        return _vm.next()
+                      }
+                    }
+                  },
+                  [_vm._v("Next")]
+                )
+              ])
+            ],
+            2
+          )
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
