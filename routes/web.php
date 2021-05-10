@@ -47,4 +47,5 @@ Route::resource('question', QuestionController::class)->except(['show', 'edit'])
 Route::get('question/{question:slug}', [QuestionController::class, 'show'])->name('question.show');
 Route::get('question/{question:slug}/edit', [QuestionController::class, 'edit'])->name('question.edit');
 
-Route::resource('user', UserController::class);
+Route::resource('user', UserController::class)->except(['edit']);
+Route::get('user/{user:slug}/edit', [UserController::class, 'edit'])->name('user.edit');

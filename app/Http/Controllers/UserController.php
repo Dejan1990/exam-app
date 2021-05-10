@@ -28,7 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.user.create');
+        $user = new User();
+        return view('backend.user.create', [ 'user' => $user ]);
     }
 
     /**
@@ -57,7 +58,7 @@ class UserController extends Controller
             'phone' => $request->phone
         ]);
 
-        return back()->with('message', 'User created successfully!');
+        return redirect()->route('user.index')->with('message', 'User created successfully!');
     }
 
     /**
@@ -77,9 +78,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('backend.user.edit', [ 'user' => $user ]);
     }
 
     /**
@@ -89,9 +90,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name'=>'required',
+        ]);
+
+        if ($request->password == '') {
+            $data = $request->except('password');
+        } else {
+            $data = $request->all();
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
+        return redirect()->route('user.index')->with('message', 'User updated successfully!');
     }
 
     /**

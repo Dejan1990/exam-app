@@ -37,7 +37,7 @@
                       <td>{{ $user->address }}</td>
                       <td>{{ $user->phone }}</td>
                       <td>
-                        <a href="{{route('user.edit',[$user->id])}}">
+                        <a href="{{ route('user.edit', $user) }}">
                             <button class="btn btn-primary">Edit</button>
                         </a>
                       </td>
