@@ -17,4 +17,21 @@ class ExamController extends Controller
             'users' => $users 
         ]);
     }
+
+    public function assignExam(Request $request)
+    {
+       /* $quizId = $request['quiz_id'];
+        $quiz = Quiz::find($quizId);
+        $userId = $request['user_id'];
+    	$quiz->users()->syncWithoutDetaching($userId);*/
+
+        $this->validate($request, [
+            'quiz_id' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        $quiz = Quiz::find($request->quiz_id);
+        $quiz->users()->syncWithoutDetaching($request->user_id);
+    	return back()->with('message', 'Exam assigned to user successfully!');
+    }
 }

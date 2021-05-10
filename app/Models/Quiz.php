@@ -19,8 +19,7 @@ class Quiz extends Model
 
     public function users()
     {
-        //return $this->belongsToMany(User::class,'quiz_user');
-        return $this->belongsToMany(User::class,'quiz_user');
+        return $this->belongsToMany(User::class,'quiz_user')->withTimeStamps();
     }
 
     public function setNameAttribute($value) 
