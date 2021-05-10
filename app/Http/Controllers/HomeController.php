@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Quiz;
 use App\Models\Result;
 use App\Models\Question;
+use App\Models\User;
 use DB;
 
 class HomeController extends Controller
@@ -88,5 +89,14 @@ class HomeController extends Controller
             array_push($attemptQuiz, $u->quiz_id);
         }
         return $attemptQuiz;
+    }
+
+    public function viewResult($userId, Quiz $quiz)
+    {
+        $results = Result::where('user_id', $userId)->where('quiz_id', $quiz->id)->with(['question', 'answer'])->get();
+        
+        return view('result-detail', [ 
+            'results' => $results,
+        ]);
     }
 }

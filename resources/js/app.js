@@ -1,5 +1,7 @@
 require('./bootstrap');
 
+var moment = require('moment');
+
 //window.Vue = require('vue'); 83. lekcija
 import Vue from 'vue'
 

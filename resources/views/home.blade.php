@@ -23,7 +23,7 @@
                             <button class="btn btn-success">Start Quiz</button>
                         </a>
                         @else
-                        <a href="/result/user/{{auth()->user()->id}}/quiz/{{$quiz->id}}">View Result</a>
+                        <a href="/result/user/{{ auth()->user()->id }}/quiz/{{ $quiz->slug }}">View Result</a>
                         
                         <span class="float-right">Completed</span>
                         @endif
