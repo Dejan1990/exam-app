@@ -28,7 +28,7 @@
                     </div>
                     <div v-show="questionIndex != questions.length">
                         <button class="btn btn-success float-right" @click="prev()">Prev</button>
-                        <button class="btn btn-success" @click="next()">Next</button>
+                        <button class="btn btn-success" @click="next();postuserChoice()">Next</button>
                     </div>
                     <div v-show="questionIndex === questions.length">
                         <p>
@@ -72,6 +72,17 @@
                     return val===true;
                 }).length
             },
+            postuserChoice(){
+                axios.post('/quiz/create',{
+                    answerId:this.currentAnswer,
+                    questionId:this.currentQuestion,
+                    quizId:this.quizid
+                }).then((response)=>{
+                    console.log(response)
+                }).catch((error)=>{
+                    alert("Error!")
+                });
+            }
         },
     }
 </script>

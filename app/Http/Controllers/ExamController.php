@@ -55,4 +55,14 @@ class ExamController extends Controller
     		return redirect()->back()->with('message', 'Exam is now not assigned to that user!');
     	}
     }
+
+    public function postQuiz(Request $request)
+    {
+        return $userQuestionAnswer = Result::updateOrCreate([
+            'user_id' => auth()->user()->id,
+            'quiz_id' => $request['quizId'], 
+            'answer_id' => $request['answerId'],
+            'question_id' => $request['questionId']// obratiti paznju na ovo quizId, answerId, questionId -> tako je u QuizComponent.vue postuserChoice()
+        ]);
+    }
 }

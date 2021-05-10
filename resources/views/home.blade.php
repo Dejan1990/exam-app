@@ -19,7 +19,7 @@
                     <p>Number of questions:{{$quiz->questions->count()}}</p>
                     <p>
                         @if(!in_array($quiz->id,$wasQuizCompleted))
-                        <a href="user/quiz/{{$quiz->id}}">
+                        <a href="user/quiz/{{ $quiz->slug }}">
                             <button class="btn btn-success">Start Quiz</button>
                         </a>
                         @else

@@ -1951,6 +1951,17 @@ __webpack_require__.r(__webpack_exports__);
       return this.userResponses.filter(function (val) {
         return val === true;
       }).length;
+    },
+    postuserChoice: function postuserChoice() {
+      axios.post('/quiz/create', {
+        answerId: this.currentAnswer,
+        questionId: this.currentQuestion,
+        quizId: this.quizid
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        alert("Error!");
+      });
     }
   }
 });
@@ -37745,7 +37756,8 @@ var render = function() {
                       staticClass: "btn btn-success",
                       on: {
                         click: function($event) {
-                          return _vm.next()
+                          _vm.next()
+                          _vm.postuserChoice()
                         }
                       }
                     },
