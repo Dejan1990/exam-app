@@ -34,4 +34,10 @@ class ExamController extends Controller
         $quiz->users()->syncWithoutDetaching($request->user_id);
     	return back()->with('message', 'Exam assigned to user successfully!');
     }
+
+    public function userExam(Request $request)
+    {
+        $quizzes = Quiz::with('users')->get();
+    	return view('backend.exam.index', [ 'quizzes' => $quizzes ]);
+    }
 }

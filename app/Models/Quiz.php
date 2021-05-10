@@ -27,4 +27,15 @@ class Quiz extends Model
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
+    public function getUsersHtmlAttribute() // da drugacide radim ovo bih koristio/blogCms
+    {
+        $anchors = [];
+
+        foreach ($this->users as $user) {
+            $anchors[] = '<span>'.$user->name.'</span>';
+        }
+
+        return implode(', ', $anchors);
+    }
 }
