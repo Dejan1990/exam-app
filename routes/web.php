@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +46,5 @@ Route::delete('question/{question}', [QuestionController::class, 'destroy'])->na
 Route::resource('question', QuestionController::class)->except(['show', 'edit']);
 Route::get('question/{question:slug}', [QuestionController::class, 'show'])->name('question.show');
 Route::get('question/{question:slug}/edit', [QuestionController::class, 'edit'])->name('question.edit');
+
+Route::resource('user', UserController::class);
