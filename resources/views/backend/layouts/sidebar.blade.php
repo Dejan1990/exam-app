@@ -18,6 +18,13 @@
                         <li><a href="{{route('question.index')}}"><i class="menu-icon icon-inbox"></i>View Question <b class="label green pull-right"></b> </a></li>
                     </ul>
 
+                    <ul class="widget widget-menu unstyled">
+                        <li><a href="{{ route('user.create') }}"><i class="menu-icon icon-bullhorn"></i> Create User </a>
+                        </li>
+                        <li><a href="{{ route('user.index') }}"><i class="menu-icon icon-inbox"></i>View User <b class="label green pull-right">
+                            </b> </a></li>
+                    </ul>
+
 
                     <ul class="widget widget-menu unstyled">
                         <li><a href="ui-button-icon.html"><i class="menu-icon icon-bold"></i> Buttons </a></li>
