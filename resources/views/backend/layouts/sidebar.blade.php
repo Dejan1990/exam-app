@@ -25,6 +25,13 @@
                             </b> </a></li>
                     </ul>
 
+                    <ul class="widget widget-menu unstyled">
+                        <li><a href="{{route('exam.create')}}"><i class="menu-icon icon-bullhorn"></i>  Assign Exam </a>
+                        </li>
+                        <li><a href="{{route('view.exam')}}"><i class="menu-icon icon-inbox"></i>View User Exam <b class="label green pull-right">
+                            </b> </a></li>
+                    </ul>
+
 
                     <ul class="widget widget-menu unstyled">
                         <li><a href="ui-button-icon.html"><i class="menu-icon icon-bold"></i> Buttons </a></li>
