@@ -31,6 +31,8 @@ Route::get('quiz/{quiz:slug}/edit', [QuizController::class, 'edit'])->name('quiz
 Route::put('quiz/{quiz}', [QuizController::class, 'update'])->name('quiz.update');
 Route::delete('quiz/{quiz}', [QuizController::class, 'destroy'])->name('quiz.destroy');
 
+Route::get('/quiz/{quiz:slug}/questions', [QuizController::class, 'question'])->name('quiz.question');
+
 /*
 Route::get('question', [QuestionController::class, 'index'])->name('question.index');
 Route::get('question/create', [QuestionController::class, 'create'])->name('question.create');

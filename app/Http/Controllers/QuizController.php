@@ -99,4 +99,9 @@ class QuizController extends Controller
         $quiz->delete();
         return back()->with('message', 'Quiz deleted Successfully!');
     }
+
+    public function question(Quiz $quiz)
+    {
+        return view('backend.quiz.question', [ 'quiz' => $quiz ]);
+    }
 }

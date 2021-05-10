@@ -34,9 +34,9 @@
 							<td>{{ $quiz->description }}</td>
 							<td>{{ $quiz->minutes }}</td>
 							<td>
-							<a href="#">
-								<button class="btn btn-inverse">View Questions</button>
-							</a>
+								<a href="{{ route('quiz.question', $quiz) }}">
+									<button class="btn btn-inverse">View Questions</button>
+								</a>
 							</td>
 
 							<td>
