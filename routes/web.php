@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ExamController;
 
 Auth::routes([
     'register' => false,
@@ -30,4 +31,6 @@ Route::group(['middleware' => 'isAdmin'], function () {
 
     Route::resource('user', UserController::class)->except(['edit']);
     Route::get('user/{user:slug}/edit', [UserController::class, 'edit'])->name('user.edit');
+
+    Route::get('/exam/create', [ExamController::class, 'create'])->name('exam.create');
 });

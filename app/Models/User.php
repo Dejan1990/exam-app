@@ -47,4 +47,9 @@ class User extends Authenticatable
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
+    public function scopeIsNotAdmin($query)
+    {
+        return $query->where('is_admin', '0')->get();
+    }
 }
